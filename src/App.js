@@ -17,19 +17,10 @@ function App() {
     useGetAction();
   const { value: industryState, handleUserAction: handleIndustryInput } =
     useGetAction();
+  //todo sorting field to powinno być 1 z 4 pól
   const { value: sortingField, handleUserAction: handlePressedButton } =
     useGetAction();
 
-  // // useEffect hook for tracking filter changes from above
-  // React.useEffect(() => {
-  //   //todo te wartosci powinny byc stąd wysłane do celu
-  //   const timerHandler = setTimeout(
-  //   () => console.log("new coutry: ", countryState, cityState),
-  //   500
-  // );
-
-  //   return () => clearTimeout(timerHandler);
-  // }, [countryState, cityState]);
   //***********************************************************************************
 
   /* reducer function and hook:

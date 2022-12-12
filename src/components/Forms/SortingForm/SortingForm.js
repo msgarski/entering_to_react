@@ -5,8 +5,14 @@ const SortingForm = ({ handlePressedButton }) => {
   return (
     <div>
       <span>Sort by: </span>
-      <ButtonField value="name" inputChange={handlePressedButton} />
-      <ButtonField value="employees" inputChange={handlePressedButton} />
+      <span>
+        <ButtonField value="nameAsc" inputChange={handlePressedButton} />
+        <ButtonField value="nameDesc" inputChange={handlePressedButton} />
+      </span>
+      <span>
+        <ButtonField value="employeesAsc" inputChange={handlePressedButton} />
+        <ButtonField value="employeesDesc" inputChange={handlePressedButton} />
+      </span>
     </div>
   );
 };
