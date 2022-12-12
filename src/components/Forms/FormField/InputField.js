@@ -1,4 +1,10 @@
-const InputField = ({ id, placeholder, type, inputChange }) => {
+const InputField = ({
+  id = "",
+  placeholder = "",
+  type = "text",
+  value = "",
+  inputChange,
+}) => {
   return (
     <>
       <div>

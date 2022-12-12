@@ -4,9 +4,34 @@ import { dataBase } from "./database/dataBase";
 import List from "./components/List/List";
 import FilterForm from "./components/Forms/FilterForm/FilterForm";
 import SortingForm from "./components/Forms/SortingForm/SortingForm";
+import useGetAction from "./hooks/useGetAction";
 
 function App() {
+  // keeping fetched list in rawList variable
   const [rawList, setRawList] = React.useState([]);
+  //*************************************************************************************
+  // receiving filter conditions from form component
+  // two times used custom hook for updating
+  // country and city input fields values
+  const { value: countryState, handleUserAction: handleCountryInput } =
+    useGetAction();
+  const { value: industryState, handleUserAction: handleIndustryInput } =
+    useGetAction();
+  const { value: sortingField, handleUserAction: handlePressedButton } =
+    useGetAction();
+
+  // // useEffect hook for tracking filter changes from above
+  // React.useEffect(() => {
+  //   //todo te wartosci powinny byc stąd wysłane do celu
+  //   const timerHandler = setTimeout(
+  //   () => console.log("new coutry: ", countryState, cityState),
+  //   500
+  // );
+
+  //   return () => clearTimeout(timerHandler);
+  // }, [countryState, cityState]);
+  //***********************************************************************************
+
   /* reducer function and hook:
   const listReducer = (state, action) => {
     switch (action.type) {
@@ -27,17 +52,33 @@ function App() {
   });
   */
 
-  //sending http request on component mounting:
+  // sending http request on component mounting,
+  // and storing List as a value of rawList variable
+  // in useEffect hook
   React.useEffect(() => {
+    // http request:
     // fetchData();
+
+    // checking if in localStorage exists old filter and sort values:
+    //todo zrobić przechowanie tych danych w localstoragu
+
+    // dummy database:
     setRawList(dataBase);
   }, []);
 
   return (
     <div>
-      <FilterForm />
-      <SortingForm />
-      <List list={rawList} />
+      <FilterForm
+        handleCountryInput={handleCountryInput}
+        handleIndustryInput={handleIndustryInput}
+      />
+      <SortingForm handlePressedButton={handlePressedButton} />
+      <List
+        list={rawList}
+        country={countryState}
+        industry={industryState}
+        sortListField={sortingField}
+      />
     </div>
   );
 }

@@ -1,9 +1,12 @@
 import React from "react";
+import ButtonField from "../FormField/ButtonField";
 
-const SortingForm = () => {
+const SortingForm = ({ handlePressedButton }) => {
   return (
     <div>
-      <p>Sorting form</p>
+      <span>Sort by: </span>
+      <ButtonField value="name" inputChange={handlePressedButton} />
+      <ButtonField value="employees" inputChange={handlePressedButton} />
     </div>
   );
 };

@@ -6,17 +6,17 @@
 
 import { useState } from "react";
 
-const useGetInput = () => {
+const useGetAction = () => {
   const [value, setValue] = useState("");
 
-  const handleUserInput = (event) => {
+  const handleUserAction = (event) => {
     setValue(event.target.value);
   };
 
   return {
     value,
-    handleUserInput,
+    handleUserAction,
   };
 };
 
-export default useGetInput;
+export default useGetAction;
