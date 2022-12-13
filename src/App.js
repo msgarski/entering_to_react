@@ -1,6 +1,5 @@
 import * as React from "react";
-// import fetchData from "./http/httpRequest";
-import { dataBase } from "./database/dataBase";
+import axios from "axios";
 import List from "./components/List/List";
 import FilterForm from "./components/Forms/FilterForm/FilterForm";
 import SortingForm from "./components/Forms/SortingForm/SortingForm";
@@ -8,7 +7,7 @@ import useGetAction from "./hooks/useGetAction";
 
 function App() {
   // keeping fetched list in rawList variable
-  const [rawList, setRawList] = React.useState([]);
+  // const [rawList, setRawList] = React.useState([]);
   //*************************************************************************************
   // receiving filter conditions from form component
   // two times used custom hook for updating
@@ -17,17 +16,19 @@ function App() {
     useGetAction();
   const { value: industryState, handleUserAction: handleIndustryInput } =
     useGetAction();
-  //todo sorting field to powinno być 1 z 4 pól
   const { value: sortingField, handleUserAction: handlePressedButton } =
     useGetAction();
 
-  //***********************************************************************************
-
-  /* reducer function and hook:
+  // reducer function and hook:
   const listReducer = (state, action) => {
     switch (action.type) {
       case "LIST_LOADED":
-        return { ...state, loading: false, isError: false };
+        return {
+          ...state,
+          data: action.payload,
+          loading: false,
+          isError: false,
+        };
       case "PENDING_LOADING":
         return { ...state, loading: true, isError: false };
       case "LOADING_ERROR":
@@ -36,27 +37,47 @@ function App() {
         throw new Error();
     }
   };
-  const [rawList, dispatchRawList] = React.useReducer(listReducer, {
+  const [fetchedList, dispatchRawList] = React.useReducer(listReducer, {
     data: [],
     loading: false,
     isError: false,
   });
-  */
+
+  //***********************************************************************************
+  // Http request function
+  //********************************************************************************** */
+  const fetchData = async () => {
+    dispatchRawList({ type: "PENDING_LOADING" });
+    const DATA_URL = "https://dujour.squiz.cloud/developer-challenge/data";
+    try {
+      const result = await axios.get(DATA_URL);
+      dispatchRawList({ type: "LIST_LOADED", payload: result.data });
+      // setRawList(result.data);
+    } catch (error) {
+      dispatchRawList({ type: "LOADING_ERROR" });
+      if (error.response) {
+        // the server responded with an error
+        console.log("Error data report: ", error.response.data);
+        console.log("Error status report: ", error.response.status);
+      } else if (error.request) {
+        // no response is received from the server
+        console.log("Error request report: ", error.request);
+      } else {
+        // Error occurred while requesting
+        console.log("Error message: ", error.message);
+      }
+    }
+  };
+  //******************************************************************************* */
 
   // sending http request on component mounting,
   // and storing List as a value of rawList variable
   // in useEffect hook
   React.useEffect(() => {
     // http request:
-    // fetchData();
-
-    // checking if in localStorage exists old filter and sort values:
-    //todo zrobić przechowanie tych danych w localstoragu
-
-    // dummy database:
-    setRawList(dataBase);
+    fetchData();
+    // setRawList(fetchedList);
   }, []);
-
   return (
     <div>
       <FilterForm
@@ -64,12 +85,16 @@ function App() {
         handleIndustryInput={handleIndustryInput}
       />
       <SortingForm handlePressedButton={handlePressedButton} />
-      <List
-        list={rawList}
-        country={countryState}
-        industry={industryState}
-        sortListField={sortingField}
-      />
+      {fetchedList.loading ? (
+        <p>Loading...</p>
+      ) : (
+        <List
+          list={fetchedList.data}
+          country={countryState}
+          industry={industryState}
+          sortListField={sortingField}
+        />
+      )}
     </div>
   );
 }

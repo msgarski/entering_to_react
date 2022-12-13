@@ -11,6 +11,8 @@ const List = ({ list, country, industry, sortListField }) => {
   const industryField = React.useRef("");
   const sortedField = React.useRef("");
 
+  console.log("list w List :>> ", list);
+
   // achieving new list state
   const [newList, setNewList] = React.useState([]);
 
@@ -81,10 +83,10 @@ const List = ({ list, country, industry, sortListField }) => {
     const actionType = typeOfAction(sortedField.current);
     //console.log("actionType", actionType);
     dispatchSort({ type: actionType, payload: newList });
-  }, [sortListField]);
+  }, [sortListField, newList]);
 
   //********************************************************************************
-  // console.log("sortedList", sortedList);
+  console.log("sortedList", sortedList);
 
   return (
     <>
