@@ -3,8 +3,8 @@ import InputField from "../FormField/InputField";
 
 const FilterForm = ({ handleCountryInput, handleIndustryInput }) => {
   return (
-    <div>
-      <p>Filter form</p>
+    <div className="filter-container">
+      <p>Filter by: </p>
       <InputField
         id="Country"
         type="text"

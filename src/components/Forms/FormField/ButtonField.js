@@ -1,11 +1,17 @@
-const ButtonField = ({ id = "", type = "button", inputChange, value = "" }) => {
+const ButtonField = ({
+  id = "",
+  type = "button",
+  inputChange,
+  value = "",
+  className,
+}) => {
   return (
     <>
-      <div>
-        <button type={type} onClick={inputChange} value={value}>
-          by {value}
+      <span className={className}>
+        <button type={type} className="btn" onClick={inputChange} value={value}>
+          {">"}
         </button>
-      </div>
+      </span>
     </>
   );
 };

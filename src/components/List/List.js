@@ -11,7 +11,7 @@ const List = ({ list, country, industry, sortListField }) => {
   const industryField = React.useRef("");
   const sortedField = React.useRef("");
 
-  console.log("list w List :>> ", list);
+  // console.log("list w List :>> ", list);
 
   // achieving new list state
   const [newList, setNewList] = React.useState([]);
@@ -86,12 +86,11 @@ const List = ({ list, country, industry, sortListField }) => {
   }, [sortListField, newList]);
 
   //********************************************************************************
-  console.log("sortedList", sortedList);
+  console.dir(sortedList);
 
   return (
     <>
-      <p>List of employees:</p>
-      <ul>
+      <ul className="list-container">
         {newList.map((item) => (
           <Item key={item.id} item={item} text={"nic nie mam"} />
         ))}

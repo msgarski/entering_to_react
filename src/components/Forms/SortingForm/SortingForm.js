@@ -3,16 +3,38 @@ import ButtonField from "../FormField/ButtonField";
 
 const SortingForm = ({ handlePressedButton }) => {
   return (
-    <div>
-      <span>Sort by: </span>
-      <span>
-        <ButtonField value="nameAsc" inputChange={handlePressedButton} />
-        <ButtonField value="nameDesc" inputChange={handlePressedButton} />
-      </span>
-      <span>
-        <ButtonField value="employeesAsc" inputChange={handlePressedButton} />
-        <ButtonField value="employeesDesc" inputChange={handlePressedButton} />
-      </span>
+    <div className="sort-container">
+      <p>Sort by: </p>
+      <div className="sort-btns">
+        <p>name</p>
+        <span className="sort-btns_btns">
+          <ButtonField
+            value="nameAsc"
+            className="btn-asc"
+            inputChange={handlePressedButton}
+          />
+          <ButtonField
+            value="nameDesc"
+            className="btn-desc"
+            inputChange={handlePressedButton}
+          />
+        </span>
+      </div>
+      <div className="sort-btns">
+        <p>number of employees</p>
+        <span className="sort-btns_btns">
+          <ButtonField
+            value="employeesAsc"
+            className="btn-asc"
+            inputChange={handlePressedButton}
+          />
+          <ButtonField
+            value="employeesDesc"
+            className="btn-desc"
+            inputChange={handlePressedButton}
+          />
+        </span>
+      </div>
     </div>
   );
 };

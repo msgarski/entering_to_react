@@ -4,6 +4,7 @@ import List from "./components/List/List";
 import FilterForm from "./components/Forms/FilterForm/FilterForm";
 import SortingForm from "./components/Forms/SortingForm/SortingForm";
 import useGetAction from "./hooks/useGetAction";
+import "./styles/main.css";
 
 function App() {
   // keeping fetched list in rawList variable
@@ -79,22 +80,32 @@ function App() {
     // setRawList(fetchedList);
   }, []);
   return (
-    <div>
-      <FilterForm
-        handleCountryInput={handleCountryInput}
-        handleIndustryInput={handleIndustryInput}
-      />
-      <SortingForm handlePressedButton={handlePressedButton} />
-      {fetchedList.loading ? (
-        <p>Loading...</p>
-      ) : (
-        <List
-          list={fetchedList.data}
-          country={countryState}
-          industry={industryState}
-          sortListField={sortingField}
-        />
-      )}
+    <div className="main-container">
+      <div className="filter-sort_container">
+        <div className="main-title">
+          <span className="list-title">List of clients:</span>
+        </div>
+        <section className="main-container_filter-section">
+          <FilterForm
+            handleCountryInput={handleCountryInput}
+            handleIndustryInput={handleIndustryInput}
+          />
+          <SortingForm handlePressedButton={handlePressedButton} />
+        </section>
+      </div>
+
+      <section className="main-container_list-section">
+        {fetchedList.loading ? (
+          <p>Loading...</p>
+        ) : (
+          <List
+            list={fetchedList.data}
+            country={countryState}
+            industry={industryState}
+            sortListField={sortingField}
+          />
+        )}
+      </section>
     </div>
   );
 }

@@ -13,9 +13,14 @@ const useGetAction = () => {
     setValue(event.target.value);
   };
 
+  const handleClick = () => {
+    setValue("");
+  };
+
   return {
     value,
     handleUserAction,
+    handleClick,
   };
 };
 
