@@ -21,7 +21,7 @@ const SortingForm = ({ handlePressedButton }) => {
         </span>
       </div>
       <div className="sort-btns">
-        <p>number of employees</p>
+        <p>num. of employees</p>
         <span className="sort-btns_btns">
           <ButtonField
             value="employeesAsc"

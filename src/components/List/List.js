@@ -11,8 +11,6 @@ const List = ({ list, country, industry, sortListField }) => {
   const industryField = React.useRef("");
   const sortedField = React.useRef("");
 
-  // console.log("list w List :>> ", list);
-
   // achieving new list state
   const [newList, setNewList] = React.useState([]);
 
@@ -42,9 +40,7 @@ const List = ({ list, country, industry, sortListField }) => {
               .includes(industryField.current.toLowerCase())
           )
         : filteredList;
-      // filteredList.sort((a, b) => {
-      //   return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-      // });
+
       setNewList(filteredList);
     }, 500);
     return () => {
@@ -81,7 +77,6 @@ const List = ({ list, country, industry, sortListField }) => {
     sortedField.current = sortListField;
     console.log("wybrano: ", sortedField.current);
     const actionType = typeOfAction(sortedField.current);
-    //console.log("actionType", actionType);
     dispatchSort({ type: actionType, payload: newList });
   }, [sortListField, newList]);
 

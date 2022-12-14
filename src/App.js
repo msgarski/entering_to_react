@@ -81,31 +81,33 @@ function App() {
   }, []);
   return (
     <div className="main-container">
-      <div className="filter-sort_container">
-        <div className="main-title">
-          <span className="list-title">List of clients:</span>
+      <div>
+        <div className="main-title cell-1">
+          <span className="list-title">List of clients</span>
         </div>
-        <section className="main-container_filter-section">
+      </div>
+      <div className="filter-sort_container">
+        <section className="main-container_filter-section cell-2">
           <FilterForm
             handleCountryInput={handleCountryInput}
             handleIndustryInput={handleIndustryInput}
           />
           <SortingForm handlePressedButton={handlePressedButton} />
         </section>
-      </div>
 
-      <section className="main-container_list-section">
-        {fetchedList.loading ? (
-          <p>Loading...</p>
-        ) : (
-          <List
-            list={fetchedList.data}
-            country={countryState}
-            industry={industryState}
-            sortListField={sortingField}
-          />
-        )}
-      </section>
+        <section className="main-container_list-section cell-3">
+          {fetchedList.loading ? (
+            <p>Loading...</p>
+          ) : (
+            <List
+              list={fetchedList.data}
+              country={countryState}
+              industry={industryState}
+              sortListField={sortingField}
+            />
+          )}
+        </section>
+      </div>
     </div>
   );
 }
