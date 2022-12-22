@@ -95,7 +95,7 @@ Filters and sort section styles
 .main-container_filter-section {
   background-color: #dae2ec;
   margin-top: 10vh;
-  height: 23vh;
+  height: 21vh;
   display: grid;
   position: fixed;
   width: 100%; }
@@ -136,14 +136,15 @@ Filters and sort section styles
 
 .filter-container {
   background-color: #fffaeb;
-  height: 70px;
+  height: 80px;
   max-width: 98vw;
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
-  margin: 0.2rem;
+  grid-template-columns: 1fr 3fr 3fr;
+  margin: 0rem 0.2rem;
   border-radius: 0.5rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  color: #102a42; }
+  color: #102a42;
+  margin-top: 5px; }
   .filter-container p {
     padding-left: 0.5rem; }
   .filter-container div {
@@ -157,8 +158,9 @@ Filters and sort section styles
   .filter-container input {
     border-radius: 0.3rem;
     border-color: #bcccdc;
-    height: 1.5rem;
-    min-width: 30vw; }
+    height: 2rem;
+    max-width: 40vw;
+    font-size: 1.2rem; }
   @media screen and (min-width: 990px) {
     .filter-container {
       transition: all 0.3s linear;
@@ -175,15 +177,17 @@ Filters and sort section styles
       .filter-container p {
         margin-top: 2%;
         font-size: 1.5rem;
-        max-height: 10%; } }
+        max-height: 10%; }
+      .filter-container input {
+        width: 50%; } }
 
 .sort-container {
   background-color: #fffaeb;
-  height: 70px;
+  height: 80px;
   max-width: 98vw;
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
-  margin: 0.2rem;
+  grid-template-columns: 1fr 3fr 3fr;
+  margin: 0rem 0.2rem;
   border-radius: 0.5rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   color: #102a42; }
@@ -243,8 +247,10 @@ Filters and sort section styles
   place-items: center; }
   .sort-btns p {
     margin-top: 2%;
+    margin-bottom: 10%;
     font-weight: 600;
     text-transform: uppercase;
+    text-align: center;
     min-height: 60%; }
   @media screen and (min-width: 992px) {
     .sort-btns {
@@ -261,7 +267,7 @@ Filters and sort section styles
 .sort-btns_btns {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-content: space-evenly; }
+  column-gap: 0.7rem; }
 
 /***************************************************************************************
 
