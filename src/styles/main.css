@@ -73,9 +73,10 @@ p {
   @media screen and (min-width: 992px) {
     .filter-sort_container {
       display: grid;
+      column-gap: 15px;
       grid-template-columns: repeat(5, 1fr);
       grid-template-rows: repeat(10, 100px);
-      grid-template-areas: "b b c c c" "b b c c c" "b b c c c" "b b c c c" "b b c c c" "b b c c c" "b b c c c" "b b c c c" "b b c c c" ". . c c c"; } }
+      grid-template-areas: "b b c c c" "b b c c c" "b b c c c" "b b c c c" "b b c c c" "b b c c c" "b b c c c" "b b c c c" "b b c c c" "b b c c c"; } }
 
 .main-container_list-section {
   margin-top: 32vh; }
@@ -86,6 +87,11 @@ p {
       margin-top: 15vh;
       height: 80vh; } }
 
+/****************************************************************************************
+
+Filters and sort section styles
+
+*****************************************************************************************/
 .main-container_filter-section {
   background-color: #dae2ec;
   margin-top: 10vh;
@@ -123,7 +129,7 @@ p {
   @media screen and (min-width: 990px) {
     .main-title {
       transition: all 0.3s linear;
-      height: 100px; }
+      min-height: 13vh; }
       .main-title span {
         font-weight: 1000;
         font-size: 2.2rem; } }
@@ -168,7 +174,8 @@ p {
         height: 30%; }
       .filter-container p {
         margin-top: 2%;
-        font-size: 1.5rem; } }
+        font-size: 1.5rem;
+        max-height: 10%; } }
 
 .sort-container {
   background-color: #fffaeb;
@@ -190,15 +197,16 @@ p {
       transition: all 0.3s linear;
       display: flex;
       flex-direction: column;
-      margin-top: 10px;
-      margin-bottom: 5px;
-      height: 50vh;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      min-height: 40vh;
       width: 95%;
       max-width: 95%;
       align-items: center; }
       .sort-container > p {
         font-size: 1.5rem;
-        margin-top: 2%; } }
+        margin-top: 2%;
+        max-height: 15%; } }
 
 .btn {
   text-transform: uppercase;
@@ -242,17 +250,24 @@ p {
     .sort-btns {
       transition: all 0.3s linear;
       grid-template-rows: 1fr 1fr 1fr;
-      margin-top: 10px;
-      margin-bottom: 10px;
       width: 95%;
       align-items: center;
-      height: 30%; } }
+      height: 30%; }
+      .sort-btns p {
+        max-height: 30%;
+        margin-top: 10px;
+        margin-bottom: 15px; } }
 
 .sort-btns_btns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: space-evenly; }
 
+/***************************************************************************************
+
+List items section
+
+*****************************************************************************************/
 .list-container {
   display: flex;
   flex-direction: column;
@@ -261,7 +276,7 @@ p {
   @media screen and (min-width: 990px) {
     .list-container {
       transition: all 0.3s linear;
-      height: 40vh;
+      height: 90vh;
       max-width: 98%;
       margin-top: -1vh; } }
 
@@ -275,44 +290,40 @@ p {
   background-color: #f8e3a5;
   border-radius: 0.5rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
+  @media screen and (min-width: 992px) {
+    .list-container_item {
+      grid-template-columns: 30% 70%;
+      grid-template-rows: 65% 35%;
+      height: 6rem; } }
 
-@media screen and (min-width: 992px) {
-  .list-container_item {
-    grid-template-columns: 40% 60%;
-    grid-template-rows: 65% 35%;
-    height: 6rem; }
-
-  .list-item_element {
-    grid-template-columns: 30% 60%; }
-
-  .record-title,
-  .record-value {
-    display: grid;
-    align-content: center;
-    font-size: 0.7rem; }
-
-  .record-value {
-    padding-left: 15%;
-    font-weight: 700;
-    font-size: 0.5rem; } }
 .list-item_element {
   display: grid;
-  grid-template-columns: 50% 50%;
-  padding: 0.2rem; }
-
-.record-value {
-  font-size: 1.1rem; }
-
-.record-title {
-  padding-left: 20%;
-  font-size: 1rem; }
+  grid-template-columns: 30% 70%; }
+  @media screen and (min-width: 992px) {
+    .list-item_element {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      padding: 0.2rem; } }
 
 .record-title {
   justify-content: left;
-  padding-top: 2%; }
+  padding-top: 2%;
+  padding-left: 20%;
+  font-size: 1rem; }
+  @media screen and (min-width: 992px) {
+    .record-title {
+      display: grid;
+      align-content: center; } }
 
 .record-value {
   padding-left: 15%;
+  font-size: 1.1rem;
   font-weight: 700; }
+  @media screen and (min-width: 992px) {
+    .record-value {
+      display: grid;
+      align-content: center;
+      padding-left: 15%;
+      font-weight: 700; } }
 
 /*# sourceMappingURL=main.css.map */
