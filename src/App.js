@@ -3,24 +3,25 @@ import axios from "axios";
 import List from "./components/List/List";
 import FilterForm from "./components/Forms/FilterForm/FilterForm";
 import SortingForm from "./components/Forms/SortingForm/SortingForm";
+import LoadingSpinner from "./components/Utilities/LoadingSpinner";
 import useGetAction from "./hooks/useGetAction";
 import "./styles/main.css";
 
 function App() {
-  // keeping fetched list in rawList variable
-  // const [rawList, setRawList] = React.useState([]);
   //*************************************************************************************
   // receiving filter conditions from form component
   // two times used custom hook for updating
   // country and city input fields values
+  //************************************************************************************
   const { value: countryState, handleUserAction: handleCountryInput } =
     useGetAction();
   const { value: industryState, handleUserAction: handleIndustryInput } =
     useGetAction();
   const { value: sortingField, handleUserAction: handlePressedButton } =
     useGetAction();
-
+  //*************************************************************************************
   // reducer function and hook:
+  //***********************************************************************************
   const listReducer = (state, action) => {
     switch (action.type) {
       case "LIST_LOADED":
@@ -52,8 +53,10 @@ function App() {
     const DATA_URL = "https://dujour.squiz.cloud/developer-challenge/data";
     try {
       const result = await axios.get(DATA_URL);
-      dispatchRawList({ type: "LIST_LOADED", payload: result.data });
-      // setRawList(result.data);
+      //postponing conveing data for showing loading spinner:
+      setTimeout(() => {
+        dispatchRawList({ type: "LIST_LOADED", payload: result.data });
+      }, 500);
     } catch (error) {
       dispatchRawList({ type: "LOADING_ERROR" });
       if (error.response) {
@@ -97,7 +100,7 @@ function App() {
 
         <section className="main-container_list-section cell-3">
           {fetchedList.loading ? (
-            <p>Loading...</p>
+            <LoadingSpinner />
           ) : (
             <List
               list={fetchedList.data}
