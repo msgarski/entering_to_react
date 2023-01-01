@@ -5,7 +5,7 @@ import FilterForm from "./components/Forms/FilterForm/FilterForm";
 import SortingForm from "./components/Forms/SortingForm/SortingForm";
 import LoadingSpinner from "./components/Utilities/LoadingSpinner";
 import useGetAction from "./hooks/useGetAction";
-import "./styles/main.css";
+import "./styles/main.scss";
 
 function App() {
   //*************************************************************************************
