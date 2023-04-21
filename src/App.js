@@ -53,10 +53,7 @@ function App() {
     const DATA_URL = "https://dujour.squiz.cloud/developer-challenge/data";
     try {
       const result = await axios.get(DATA_URL);
-      //postponing conveing data for showing loading spinner:
-      setTimeout(() => {
-        dispatchRawList({ type: "LIST_LOADED", payload: result.data });
-      }, 500);
+      dispatchRawList({ type: "LIST_LOADED", payload: result.data });
     } catch (error) {
       dispatchRawList({ type: "LOADING_ERROR" });
       if (error.response) {
